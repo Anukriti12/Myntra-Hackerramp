@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Myntra | Magix</title>
+
+    <link href="images/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="css/bundle.min.css">
+    <link href="css/LineIcons.min.css" rel="stylesheet">
+    <link href="css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="css/owl.carousel.min.css" rel="stylesheet">
+    <link href="css/wow.css" rel="stylesheet">
+    <link href="css/tootik.min.css" rel="stylesheet">
+    <link href="css/line-awesome.min.css" rel="stylesheet">
+    <link href="css/jquery.pagepiling.css" rel="stylesheet">
+    <link href="css/model-window.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/stylealt.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="90">
+    <div id="app">
+
+        <!-- START LOADER -->
+        <div class="loader-bg">
+            <div id="container">
+                <svg viewBox="0 0 100 100">
+                    <defs>
+                        <filter id="shadow">
+                            <feDropShadow dx="0" dy="0" stdDeviation="0.5"
+                                        flood-color="#dabd1d"/>
+                        </filter>
+                    </defs>
+                    <circle id="spinner" style="fill:transparent;stroke:#ed2d34;stroke-width: 8px;stroke-linecap: round;filter:url(#shadow);" cx="50" cy="50" r="45"/>
+                </svg>
+            </div>
+        </div>
+        <!-- END LOADER -->
+
+        <!-- START HEADER -->
+        <div class="wrap_container cursor-light">
+            <div class="main_container">
+                <div class="side_nav">
+                    <div class="my-sticky-nav">
+                        <div class="side_menu">
+                            <a class="brand-logo link" href="index.html">
+                                <img src="images/logo.png" alt="logo" style="height: 87%;width: 87%;"/>
+                            </a>
+                            <div id="my_tog" class="my_tog link" onmouseover="my_click();">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div>
+                                <a class="brand-logo sticky-logo link" href="index.html">
+                                    <img src="images/logo.png" alt="logo" style="height: 80%;width: 80%;"/>
+                                </a>
+                            </div>
+                            <!-- Sticky Nav -->
+                            <nav class="side-nav-menu">
+                                <ul class="nav-menu nav-fill" id="menu">
+                                    <li class="nav-item">
+                                        <a data-menuanchor="wardrobe" class="nav-link link active line" href="#wardrobe">My Wardrobe</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-menuanchor="suggestions" class="nav-link link line" href="#suggestions">Suggestions</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-menuanchor="trends" class="nav-link link line" href="#trends">Trends</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nav-Bar -->
+                <header id="home">
+                    <nav class="navbar navbar-light bg-light cursor-light d-md-none">
+                        <div class="my_nav_tog d-block d-md-none">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <a class="navbar-brand ml-auto" href="index.html">
+                            <img src="images/logo.png" alt="Logo" style="height: 100%;width: 100%;">
+                        </a>
+                    </nav>
+                    <div class="broad">
+                        <span class="btn-close" id="btn_sideNavClose"><i></i><i></i></span>
+                        <nav class="side-nav-menu">
+                            <a class="brand-logo" href="index.html">
+                                <img src="images/logo.png" alt="Logo" style="height: 90%;width: 90%;"/>
+                            </a>
+                            <ul class="nav-menu nav-fill">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#wardrobe">My Wardrobe</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#suggestions">Suggestions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#trends">Trends</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </header>
+            </div>
+        </div>
+        <!-- END HEADER -->
+
+        <div id="pagepiling">
+            <!-- START BANNER -->
+            <section class="section slide1 p-0" id="home-banner">
+                <div class="slider-area" id="slider-area">
+                    <div class="bg-overlay bg-green opacity-8"></div>
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-6">
+                                <h1 class="main-font font-weight-bold text-grey content1 wow" data-wow-delay=".4s">Hi I'm your <span class="d-block main-color">Virtual Stylist </span></h1>
+                                <p class="alt-font text-grey my-3 content1 wow" data-wow-delay=".6s">{{connect}}</p>
+                                <a v-if="button !== 'Access your wardrobe!'" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0 content1 wow" @click="authVerification" data-wow-delay=".8s">{{button}}</a>
+                                <div v-else>
+                                    <a onclick="morphic_window('morphic-window1');" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0 content1 wow" data-wow-delay=".8s">{{button}}</a>
+                                    <a onclick="morphic_window('morphic-window2');" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0 content1 wow" data-wow-delay=".8s">Style Analysis</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 section1right wow" data-wow-delay=".8s">
+                                <div class="banner-image" data-depth="0.07">
+                                    <img :src="img" alt="Banner-Product">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Circle-One -->
+                    <div class="circle-one circle1fade wow" v-if="img !== 'images/pic0.png'" data-wow-delay=".2s">
+                        <span data-tootik="Comfortable" data-tootik-conf="top invert square shadow">
+                            <a href="javascript:void(0);">
+                                <span class="animated-circle position-relative"></span>
+                            </a>
+                        </span>
+                    </div>
+                    <!-- Circle-Two -->
+                    <div class="circle-two circle2fade wow" v-if="img !== 'images/pic0.png'" data-wow-delay=".4s">
+                        <span data-tootik="Mature" data-tootik-conf="bottom invert square shadow">
+                            <a href="javascript:void(0);">
+                                <span class="animated-circle position-relative"></span>
+                            </a>
+                        </span>
+                    </div>
+                    <!-- Circle-Three -->
+                    <div class="circle-three circle3fade wow" v-if="img !== 'images/pic0.png'" data-wow-delay=".6s">
+                        <span data-tootik="Stylish" data-tootik-conf="top invert square shadow">
+                                <a href="javascript:void(0);">
+                                    <span class="animated-circle position-relative"></span>
+                                </a>
+                        </span>
+                    </div>
+                    <!-- Circle-Four -->
+                    <div class="circle-four circle4fade wow" v-if="img !== 'images/pic0.png'" data-wow-delay=".8s">
+                        <span data-tootik="Formal" data-tootik-conf="bottom invert square shadow">
+                            <a href="javascript:void(0);">
+                                <span class="animated-circle position-relative"></span>
+                            </a>
+                        </span>
+                    </div>
+                    <!-- Circle-Five -->
+                    <div class="circle-five circle5fade wow" v-if="img !== 'images/pic0.png'" data-wow-delay=".95s">
+                        <span data-tootik="Trendy" data-tootik-conf="top invert square shadow">
+                                <a href="javascript:void(0);">
+                                    <span class="animated-circle position-relative"></span>
+                                </a>
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <!-- END BANNER -->
+
+            <!-- START ALL PRODUCTS -->
+            <section class="section slide2 all-products" id="all-products">
+                <div class="container expand-container position-relative">
+                    <div class="row align-items-center mb-3 mb-md-5 section-heading">
+                        <div class="col-12 col-md-6 section2left wow" data-wow-delay=".8s">
+                            <h2 class="main-font">Today's <span class="d-block main-color">Specialized Picks</span></h2>
+                        </div>
+                        <div class="col-12 col-md-6 section2right wow" data-wow-delay=".2s">
+                            <div class="row my-4 my-md-0">
+                                <!-- Counter -->
+                                <div class="col-12 col-md-4">
+                                    <div class="parallax-box text-grey">
+                                        <h2 class="count">36</h2>
+                                        <h5>Picks</h5>
+                                    </div>
+                                </div>
+                                <!-- Counter -->
+                                <div class="col-12 col-md-4">
+                                    <div class="parallax-box text-grey">
+                                        <h2 class="count">15000</h2>
+                                        <h5>Avg Happy buyers</h5>
+                                    </div>
+                                </div>
+                                <!-- Counter -->
+                                <div class="col-12 col-md-4">
+                                    <div class="parallax-box text-grey">
+                                        <h2>4.72</h2>
+                                        <h5>Avg Ratings</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products -->
+                    <div class="row products-fade wow" data-wow-delay=".8s">
+                        <div class="owl-products owl-carousel owl-theme wow fadeInUp">
+                            <!--Item 1-->
+                            <div class="team-box item">
+                                <!--Product Image-->
+                                <div class="team-image">
+                                    <img src="images/product1.jpg" alt="image">
+                                </div>
+                                <!--Product Text-->
+                                <div class="team-text">
+                                    <h6 class="main-font">SASSAFRAS (72% Match)</h6>
+                                    <h6 class="main-font">Suit, Black, Coat</h6>
+                                    <a onclick="morphic_window('morphic-window3');" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0">View Detail</a>
+                                </div>
+                            </div>
+                            <!--Item 2-->
+                            <div class="team-box item">
+                                <!--Product Image-->
+                                <div class="team-image">
+                                    <img src="images/product2.jpg" alt="image">
+                                </div>
+                                <!--Product Text-->
+                                <div class="team-text">
+                                    <h6 class="main-font">HRX by Hrithik Roshan (77% Match)</h6>
+                                    <h6 class="main-font">Trendy, skinnies, wedges</h6>
+                                    <a onclick="morphic_window('morphic-window3');" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0">View Detail</a>
+                                </div>
+                            </div>
+                            <!--Item 3-->
+                            <div class="team-box item">
+                                <!--Product Image-->
+                                <div class="team-image">
+                                    <img src="images/product3.jpg" alt="image">
+                                </div>
+                                <!--Product Text-->
+                                <div class="team-text">
+                                    <h6 class="main-font">Marks & Spencer (61% Match)</h6>
+                                    <h6 class="main-font">Trendy, Cardi</h6>
+                                    <a onclick="morphic_window('morphic-window3');" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0">View Detail</a>
+                                </div>
+                            </div>
+                            <!--Item 4-->
+                            <div class="team-box item">
+                                <!--Product Image-->
+                                <div class="team-image">
+                                    <img src="images/product4.jpg" alt="image">
+                                </div>
+                                <!--Product Text-->
+                                <div class="team-text">
+                                    <h6 class="main-font">HERE&NOW (93% Match)</h6>
+                                    <h6 class="main-font">Formal, Coat, Suit</h6>
+                                    <a onclick="morphic_window('morphic-window3');" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0">View Detail</a>
+                                </div>
+                            </div>
+                            <!--Item 5-->
+                            <div class="team-box item">
+                                <!--Product Image-->
+                                <div class="team-image">
+                                    <img src="images/product5.jpg" alt="image">
+                                </div>
+                                <!--Product Text-->
+                                <div class="team-text">
+                                    <h6 class="main-font">Mast & Harbour (72% Match)</h6>
+                                    <h6 class="main-font">Trendy, Cardi</h6>
+                                    <a onclick="morphic_window('morphic-window3');" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0">View Detail</a>
+                                </div>
+                            </div>
+                            <!--Item 6-->
+                            <div class="team-box item">
+                                <!--Product Image-->
+                                <div class="team-image">
+                                    <img src="images/product6.jpg" alt="image">
+                                </div>
+                                <!--Product Text-->
+                                <div class="team-text">
+                                    <h6 class="main-font">Masaba (68% Match)</h6>
+                                    <a onclick="morphic_window('morphic-window3');" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-0">View Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Owl Nav-->
+                    <a class='circle' id="team-circle-left"><i class="lni lni-chevron-left"></i></a>
+                    <a class='circle' id="team-circle-right"><i class="lni lni-chevron-right"></i></a>
+                </div>
+            </section>
+            <!-- END ALL PRODUCTS -->
+
+            <!-- START REVIEWS -->
+            <section class="section slide4 reviews" id="reviews">
+                <div class="container expand-container">
+                    <div class="row align-items-center mb-3 mb-md-5 section-heading">
+                        <div class="col-12 section3zoom text-center wow" data-wow-delay=".8s">
+                            <h4 class="main-font">Current</h4>
+                            <h2 class="main-font main-color">Fashion Trends</h2>
+                        </div>
+                    </div>
+
+                    <center><img src="images/text mining-1.png" style="width:50%; height:50%;"></center>
+
+                    <!-- Testimonial Slider -->
+                    <div id="testimonial-carousal" class="owl-carousel text-center wow fadeIn" data-wow-delay="300ms">
+                        <!-- Item-1 -->
+                        <div class="item review-zoom1In wow" data-wow-delay=".2s">
+                            <h2>Popular Posts</h2>
+                            <textarea rows="4" cols="100">
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11084654_1570278503251827_994340967_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11085121_1409776552673883_1952786431_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142859_745032242261930_1254653245_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11116595_1388654598125043_1246271796_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/1389124_909348465784812_1149636855_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11116871_966188050065692_1926096318_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11084730_808803489166753_381557437_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11098329_615126208623541_1422242773_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11078539_423166591189940_1359074344_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11143035_1424216524559881_848119795_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11143014_1578706582383690_992431091_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11084839_902467426483908_1359888013_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11142767_1107734209252865_1760824936_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11142266_1657796017777707_962863630_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/10661082_1408924919425202_727544821_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11116781_1651662998396677_1350297840_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/10731882_434593346709297_779508410_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpf1/t51.2885-15/e15/10387763_453186401498106_1862291790_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11098351_1556702291277418_1198396712_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142303_740113256109665_1425583034_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142303_740113256109665_1425583034_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/10706685_1587722874832589_1682116126_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpf1/t51.2885-15/e15/1516315_384797551722597_827894428_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11084967_828612363885261_539548747_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11094459_888805561175816_592644522_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11116860_1585220995084230_1938624872_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142214_433013970208454_54041234_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11111553_391808901020086_1882945946_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142723_1093226747370241_261312466_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11084986_359238590947754_341351193_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/e15/928855_866103663455470_157107109_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/10731767_886293328076796_1954965174_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11085072_456922927809615_763687510_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11117181_697344860387933_1554050819_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11116889_799482556795298_840359328_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142349_682726605206050_1081785935_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11111458_937057409662139_1872652213_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/10986353_1553376388257626_1620845445_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11084639_1587797161494798_15957227_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11142122_397498897102049_266700263_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11142122_397498897102049_266700263_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11092978_837937436281478_1139224748_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11098200_849143748486247_457070614_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11137923_835128473233811_1925054561_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11116619_919037731450574_1764993671_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11123762_979054665438119_1409137131_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11008107_658053917655730_50945879_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11098318_1376957602634021_1324629969_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11111364_892257527514540_2103532823_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/e15/10683923_1074301419253216_847332241_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11098330_837504409657654_179764758_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11117147_600627733408198_2116524231_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/10919253_694942183948376_2001206564_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/10919235_634891736643600_2039184092_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11098465_873239862743366_461165960_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11116986_760558524064682_1760375608_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11098760_510047935811950_1270550818_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11123710_1643857759181731_615378619_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11033015_820312431396610_1972480728_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11116945_1569513033329072_1176383614_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11116945_1569513033329072_1176383614_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142178_457944534368606_2109249880_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/e15/928822_812184168850169_1240308925_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142748_1550734051854636_1219599227_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/e15/10513715_963742787004026_1271998809_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11116760_825781730810678_1489095005_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/10956731_1445113762448207_179197457_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11116921_463318207150926_1758579945_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11111467_451988738308692_442372993_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11098671_377713092435983_589926610_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/e15/1515164_801812339888107_932121136_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11101973_380533732150563_1280283453_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142348_1575254916065284_442679248_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11137854_844253678981314_1102293804_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11111247_1601373576748009_1438615206_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11085148_802375953132165_1540515158_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11085145_403429346503900_1011660175_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11123737_1621789701385980_1163697008_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11138061_1428199954160868_534630094_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142120_464362967050656_1593843769_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142120_464362967050656_1593843769_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142393_849339378480076_92949985_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11098461_366806376845542_262633790_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11085130_925135387507877_541079907_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11098688_1575590602680334_738196810_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11123668_1459709754321034_654823096_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/e15/10488703_830126450413910_1270257589_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11094489_1063008900380318_1119445709_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/928875_761063607341914_69152219_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11111321_757154251059144_1352143359_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11085163_774417669346247_1243865019_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11123807_368741290003763_1228874494_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11084759_1380498505583060_602825871_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11138026_1431463633816695_71325082_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11142189_431661176994130_9531283_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11116667_735885013197419_1983127144_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11116865_948999751779908_312661232_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11078939_1435182370115487_1492985231_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/e15/925580_1624016037843698_518391429_n.jpg
+                                https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11084999_1688494321378302_1592511242_n.jpg
+                            </textarea>
+                        </div>
+                        <!-- Item-2 -->
+                        <div class="item review-zoom2In wow" data-wow-delay=".4s">
+                            <h2>Tag Counts</h2>
+                            <textarea rows="4" cols="100">
+                                fashion 96115
+                                shopping 56472
+                                shoes 48008
+                                style 45403
+                                love 38770
+                                cute 30692
+                                instagood 30051
+                                beautiful 29301
+                                girl 27674
+                                photooftheday 26991
+                                dress 24598
+                                me 24308
+                                bag 22903
+                                tagsforlikes 22217
+                                instafashion 21971
+                                stylish 21650
+                                swag 20521
+                                beauty 18994
+                                jewelry 18511
+                                heels 18502
+                                outfit 18204
+                                model 18197
+                                instadaily 17943
+                                pretty 17018
+                                follow 15748
+                                girls 15599
+                                hair 15554
+                                design 15172
+                                picoftheday 14269
+                                followme 14147
+                                happy 13962
+                                ootd 13803
+                                summer 13722
+                                styles 13433
+                                fashionista 12738
+                                pink 12641
+                                skirt 11776
+                                instalike 11598
+                                eyes 11508
+                                clothing 11455
+                                smile 11427
+                                igers 11396
+                                nails 11226
+                                clothes 11209
+                                purse 11172
+                                like4like 11000
+                                amazing 10994
+                                instamood 10497
+                                fashionblogger 10438
+                                fun 10387
+                                tbt 10011
+                                bestoftheday 9896
+                                friends 9587
+                                tflers 9084
+                                food 8670
+                                lookbook 8332
+                                boutique 8257
+                                trend 8248
+                                shirt 8124
+                                fashionable 7816
+                                shop 7446
+                                sale 7226
+                                korea 6934
+                                street 6886
+                                streetfashion 6829
+                                glam 6781
+                                girly 6618
+                                fashionstyle 6550
+                                chanel 6460
+                                fashionweek 6225
+                                fashionshow 5818
+                                selfie 5642
+                                makeup 5635
+                                onlineshop 5557
+                                spring 5538
+                                luxury 5532
+                                knit 5482
+                                cool 5465
+                                hermes 5049
+                                new 4988
+                                moda 4608
+                                prada 4597
+                                nike 4468
+                                dior 4454
+                                siambrandname 4375
+                                zara 4344
+                                accessories 4328
+                                gucci 4266
+                                black 4136
+                                sneakers 3927
+                                lv 3847
+                                likeforlike 3720
+                                streetstyle 3710
+                                art 3655
+                                sbn 3646
+                                ysl 3394
+                                look 3390
+                                jeans 3311
+                                follow4follow 3254
+                                valentino 3214
+                                topshop 3200
+                                instastyle 3187
+                                tshirt 3120
+                                bags 3091
+                                louisvuitton 3016
+                                fresh 2963
+                                blogger 2893
+                                hot 2849
+                                f4f 2769
+                                sun 2768
+                                givenchy 2758
+                                pants 2756
+                                trendy 2753
+                                life 2735
+                                celine 2710
+                                vintage 2705
+                                chic 2701
+                                lyn 2672
+                                white 2617
+                                handmade 2603
+                                dubai 2596
+                                streetwear 2563
+                                dope 2543
+                                olshop 2540
+                                followforfollow 2528
+                                brandname 2513
+                                fendi 2507
+                                brand 2472
+                                kloset 2469
+                                boy 2402
+                                vscocam 2392
+                                balenciaga 2348
+                                lynaround 2308
+                                outfitoftheday 2295
+                                jacket 2275
+                                lifestyle 2275
+                                inspiration 2245
+                                murah 2232
+                                onlineshopping 2209
+                                tas 2204
+                                indonesia 2203
+                                online 2177
+                                handbag 2132
+                                designer 2121
+                                women 2102
+                                photo 2086
+                                menswear 2074
+                                paris 2041
+                                music 2019
+                                musthave 2019
+                                fitness 1997
+                                top 1991
+                                thailand 1987
+                                weloveshopping 1985
+                                adidas 1972
+                                l4l 1961
+                                lookoftheday 1946
+                                fashiondiaries 1917
+                                man 1913
+                                swagger 1912
+                                mensfashion 1887
+                                highheels 1863
+                                iphonesia 1851
+                                nice 1811
+                                repost 1802
+                                stylist 1796
+                                burberry 1793
+                                instalove 1786
+                                fashionblog 1777
+                                milin 1754
+                                tumblr 1753
+                                guy 1743
+                                jualan 1738
+                                sepatu 1734
+                                loveit 1704
+                                newyork 1700
+                                nyc 1698
+                                sunglasses 1684
+                                disaya 1681
+                                leather 1680
+                                kuwait 1676
+                                woman 1669
+                                travel 1660
+                                blue 1659
+                                hkig 1630
+                                classy 1624
+                                london 1613
+                                sneaker 1596
+                                instacool 1595
+                                tasmurah 1590
+                                japan 1583
+                                watch 1578
+                                cartier 1567
+                                necklace 1546
+                                nofilter 1542
+                                vsco 1537
+                                apparel 1525
+                                shoppingonline 1525
+                                friday 1519
+                                areeya 1496
+                                jakarta 1495
+                                blog 1495
+                                miumiu 1488
+                                red 1488
+                                instafollow 1484
+                                kicks 1483
+                                handsome 1480
+                                beach 1476
+                                wallet 1474
+                                sneakerhead 1472
+                                boys 1468
+                                uae 1460
+                                jualanku 1460
+                                trustedseller 1456
+                                weekend 1432
+                                shoe 1430
+                                boots 1415
+                                followback 1409
+                                baby 1396
+                                used 1395
+                                instashoes 1375
+                                potd 1370
+                                polo 1362
+                                men 1358
+                                chanelboy 1355
+                                instagram 1353
+                                instashop 1341
+                                glamour 1338
+                                sunday 1333
+                                shoeporn 1332
+                                webstagram 1332
+                                versace 1326
+                                coach 1320
+                                mk 1317
+                                instapic 1313
+                                2hand 1310
+                                tweegram 1301
+                                gold 1280
+                                fashiongram 1276
+                                iphoneonly 1275
+                                instagramers 1268
+                                igshop 1267
+                                mcm 1263
+                                bajumurah 1259
+                                hijab 1255
+                                hongkong 1255
+                                2015 1251
+                                denim 1244
+                                sweet 1244
+                                perfect 1242
+                                bracelet 1237
+                                party 1236
+                                best 1233
+                                michaelkors 1231
+                                reseller 1230
+                                secondhand 1221
+                                wila 1216
+                                sepatumurah 1209
+                                qatar 1208
+                                good 1206
+                                sport 1198
+                                awesome 1196
+                                miami 1196
+                                swagg 1191
+                                mode 1190
+                                olshopindo 1182
+                                trends 1180
+                                wedding 1169
+                                bandung 1168
+                                converse 1158
+                                dresses 1149
+                                baju 1138
+                                bangkok 1136
+                                jaspal 1136
+                                original 1134
+                                louboutin 1128
+                                sretsis 1119
+                                funny 1114
+                                sky 1108
+                                flowers 1101
+                                blouse 1091
+                                mango 1087
+                                lady 1087
+                                pantip 1085
+                                gorgeous 1083
+                                hm 1083
+                                lovely 1080
+                                forsale 1076
+                                hkshop 1071
+                                vogue 1071
+                                instasize 1071
+                                models 1068
+                                hkonlineshop 1063
+                                nicekicks 1048
+                                trusted 1046
+                                clutch 1032
+                                la 1031
+                                kayasis 1030
+                                hiend 1026
+                                likes 1024
+                                boho 1017
+                                gift 1014
+                                vans 1012
+                                italy 1010
+                                readystock 1008
+                                casual 1006
+                                bahrain 1003
+                                chloe 1001
+                                wiwt 999
+                                collection 998
+                                dailylook 994
+                                usa 991
+                                siam 986
+                                authentic 981
+                                kickstagram 977
+                                fit 976
+                                ootn 974
+                                whatiwore 972
+                                winter 970
+                                preorder 964
+                                sneakerheads 959
+                                gym 957
+                                igdaily 956
+                                igsneakercommunity 955
+                                day 949
+                                nature 940
+                                import 938
+                                instagramhub 938
+                                blackandwhite 937
+                                kids 928
+                                bikini 928
+                                wiw 928
+                                solecollector 921
+                                likeforfollow 916
+                                hkigshop 916
+                                blonde 915
+                                color 911
+                                flatshoes 910
+                                styleblogger 901
+                                daily 899
+                                jualtas 898
+                                igfashion 889
+                                mua 888
+                                photoshoot 888
+                                ring 884
+                                matilda 881
+                                jj 880
+                                colorful 879
+                                family 876
+                                grunge 875
+                                sneakerporn 875
+                                cps 869
+                                hk 867
+                                store 863
+                                istanbul 862
+                                motivation 861
+                                sunny 856
+                                instakicks 847
+                                buy 846
+                                ralphlauren 844
+                                wedges 843
+                                skincare 842
+                                goodmorning 839
+                                shopaholic 837
+                                weheartit 837
+                                fashionaddict 836
+                                belt 831
+                                free 830
+                                elegant 829
+                                tattoo 828
+                                jewellery 823
+                                today 821
+                                bestseller 817
+                                likesforlikes 816
+                                sweater 809
+                                work 807
+                                ferragamo 801
+                                dance 799
+                                closet 799
+                                urban 792
+                                my 791
+                                likeback 790
+                                hairstyle 790
+                                sneakerfreak 788
+                                california 785
+                                jordan 784
+                                dropship 784
+                                couture 780
+                                coachella 775
+                                christianlouboutin 775
+                                cosmetics 772
+                                classic 772
+                                kik 769
+                                instaphoto 769
+                                promote 765
+                                bored 765
+                                soleonfire 763
+                                wholesale 758
+                                shoegasm 756
+                                throwback 756
+                                sayajual 756
+                                artist 754
+                                topshopthailand 752
+                                handbags 752
+                                jewlery 752
+                                money 747
+                                portrait 746
+                                rolex 745
+                                mensstyle 741
+                                jualsepatu 740
+                                hkgirl 740
+                                healthy 739
+                                tiffany 739
+                                menstyle 737
+                                accessory 735
+                                sneakerholics 734
+                                fashionpost 731
+                                car 729
+                                dapper 728
+                                balmain 727
+                                losangeles 727
+                                green 725
+                                polyvore 725
+                                china 719
+                                shoponline 718
+                                q8 718
+                                forever21 713
+                                onlinestore 701
+                                murmer 700
+                                cardigan 698
+                                tasbranded 697
+                                night 696
+                                tods 696
+                                asos 695
+                                kwankao 693
+                                legs 691
+                                lol 690
+                                colors 688
+                                highquality 688
+                                blazer 688
+                                walklikeus 687
+                                picstitch 686
+                                insta 684
+                                moschino 681
+                                hipster 680
+                                tee 675
+                                hat 668
+                                ladies 665
+                                ccoo 661
+                                flower 661
+                                sneakerfiend 660
+                                uk 657
+                                chromehearts 656
+                                kenzo 654
+                                plussize 651
+                                ss15 649
+                                sandals 649
+                                peepmysneaks 649
+                                branded 643
+                                gay 642
+                                jualbaju 641
+                                tagsta 639
+                                armani 638
+                                happiness 636
+                                limited 635
+                                bottegaveneta 635
+                                home 635
+                                tasimport 633
+                                workout 631
+                                flykicks 631
+                                lipstick 631
+                                thai 630
+                                birkin 630
+                                newbalance 629
+                                sfs 623
+                                earrings 622
+                                katespade 620
+                                jumpsuit 619
+                                appbreeze 615
+                                australia 615
+                                kawaii 612
+                                trustedolshop 610
+                                iphone 610
+                                jualansis 609
+                                spamforspam 609
+                                star 609
+                                doha 607
+                                onlineboutique 607
+                                retro 607
+                                hiphop 605
+                                nailart 603
+                                nail 596
+                                jimmychoo 596
+                                saudiarabia 596
+                                sunshine 596
+                                silver 596
+                                details 596
+                                lips 594
+                                grosir 593
+                                estilo 592
+                                body 591
+                            </textarea>
+                        </div>
+                        <!-- Item-3 -->
+                        <div class="item review-zoom3In wow" data-wow-delay=".6s">
+                            <h2>Trendy Words</h2>
+                            <textarea rows="4" cols="100">
+                                tagsforlikesapp
+                                nofilter30
+                                louboutinheels
+                                louboutin
+                                bandungbanget
+                                hermesbirkin
+                                stylistshopconnect
+                                londonmarathon
+                                hermesconstanse
+                                vscocamfullpack
+                                onlineshopsepatu
+                                christianlouboutin
+                                collection_street
+                                bandungjuara
+                                klosetss15
+                                fendikarlito
+                                fridayvibes
+                                disayass15
+                                beautyblogger
+                                birkinostrich
+                                fridaymood
+                                birkinepsom
+                                birkincrocodile
+                                collection_bw
+                                kayasis
+                                moneypack
+                                birkin30
+                                dubailadiesclub
+                                valentinoflatshoes
+                                trendsettersbazaar
+                                birkintogo
+                                jeanshw
+                                tasimport
+                                repostwhiz
+                                jeanspria
+                                sweatercrop
+                                collection_hdr
+                                sretsisss15
+                                rolexero
+                                birkincroco
+                                travelphotography
+                                collection_details
+                                voguefestival
+                                adidasitaly
+                                fendi3jours
+                                bikiniseries
+                                birkintoys
+                                followparty
+                                sweaterpria
+                                cardiganpanjang
+                                katespademalaysia
+                                indonesian_blogger
+                                flowersandmacro
+                                vscocamrd
+                                katespadesecond
+                                blouseimport
+                                couturedress
+                                collection_sky
+                                hermesbearn
+                                topshopstyle
+                                jakartafoodies
+                                dubai2015
+                                hermesjige
+                                authenticitems
+                                makeupartistsworldwide
+                                jimmychoo
+                                jacketpria
+                                purseboppicks
+                                adidasdragonmurah
+                                brand
+                                saudiarabia
+                                tshirtbranded
+                                sepatuberkualitas
+                                converseanak
+                                collection_silhouette
+                                summer2015
+                                adidassuperstar
+                                louboutins
+                                springtrap
+                                chanelshoes
+                                fitnessfreak
+                                adidasruning
+                                jualsepatu
+                                collection_splash
+                                portraitmood
+                                moneygram
+                                trend2015
+                                dropshipsepatu
+                                colorsofyoga
+                                trendmoodselling
+                                jualanonline
+                                fendimonster
+                                authenticjordan
+                                murmershop
+                                sepatumurah
+                                boutiquesupplier
+                                jualsepatucewekmurah
+                                weekendiscoming
+                                amazingphil
+                                nailsonfleek
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END REVIEWS -->
+        </div>
+
+        <div id="data-modal">
+
+            <!-- Modal Window 1 Start -->
+            <div class="modal-window" id="morphic-window1">
+                <div class="modal-body">
+                    <header>
+                        <span class="close-modal"><i></i><i></i></span>
+                    </header>
+                    <div class="morphic-body">
+                        <div class="container">
+                            <div class="row main-morphic-body align-items-center">
+                                <div class="tab" style="margin-right:25px;">
+                                    <button class="tablinks" onclick="openCity(event, 'Tops')">Tops</button>
+                                    <button class="tablinks" onclick="openCity(event, 'Pants')">Pants</button>
+                                    <button class="tablinks" onclick="openCity(event, 'Dresses')">Dresses</button>
+                                    <button class="tablinks" onclick="openCity(event, 'Hoodies')">Hoodies</button>
+                                </div>
+
+                                <br>
+
+                                <section class="p-0">
+                                    <div class="tabcontent row" id="Tops">
+                                        <div class="col-md-4 wrap-item">
+                                                <div class="item-container effect-sadie">
+                                                    <img src="images/dress1.jpg" alt="work">
+                                                    <a class="fancybox-media overlay" href="images/dress1.jpg" data-fancybox="images">
+                                                        <div class="overlay-inner">
+                                                            <h4>View Simmilar</h4>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4 wrap-item">
+                                                <div class="item-container effect-sadie">
+                                                    <img src="images/dress2.jpg" alt="work">
+                                                    <a class="fancybox-media overlay" href="images/dress2.jpg" data-fancybox="images">
+                                                        <div class="overlay-inner">
+                                                            <h4>View Simmilar</h4>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabcontent row" id="Pants">
+                                        <div class="col-md-4 wrap-item">
+                                                <div class="item-container effect-sadie">
+                                                    <img src="images/dress5.jpg" alt="work">
+                                                    <a class="fancybox-media overlay" href="images/dress5.jpg" data-fancybox="images">
+                                                        <div class="overlay-inner">
+                                                            <h4>View Simmilar</h4>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4 wrap-item">
+                                                <div class="item-container effect-sadie">
+                                                    <img src="images/dress6.jpg" alt="work">
+                                                    <a class="fancybox-media overlay" href="images/dress6.jpg" data-fancybox="images">
+                                                        <div class="overlay-inner">
+                                                            <h4>View Simmilar</h4>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4 wrap-item">
+                                            <div class="item-container effect-sadie">
+                                                <img src="images/dress7.jpg" alt="work">
+                                                <a class="fancybox-media overlay" href="images/dress7.jpg" data-fancybox="images">
+                                                    <div class="overlay-inner">
+                                                        <h4>View Simmilar</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabcontent row" id="Dresses">
+                                        <div class="col-md-4 wrap-item">
+                                                <div class="item-container effect-sadie">
+                                                    <img src="images/dress8.jpg" alt="work">
+                                                    <a class="fancybox-media overlay" href="images/dress8.jpg" data-fancybox="images">
+                                                        <div class="overlay-inner">
+                                                            <h4>View Simmilar</h4>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4 wrap-item">
+                                                <div class="item-container effect-sadie">
+                                                    <img src="images/dress9.jpg" alt="work">
+                                                    <a class="fancybox-media overlay" href="images/dress9.jpg" data-fancybox="images">
+                                                        <div class="overlay-inner">
+                                                            <h4>View Simmilar</h4>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabcontent row" id="Hoodies">
+                                        <div class="col-md-4 wrap-item">
+                                                <div class="item-container effect-sadie">
+                                                    <img src="images/dress10.jpg" alt="work">
+                                                    <a class="fancybox-media overlay" href="images/dress10.jpg" data-fancybox="images">
+                                                        <div class="overlay-inner">
+                                                            <h4>View Simmilar</h4>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4 wrap-item">
+                                                <div class="item-container effect-sadie">
+                                                    <img src="images/dress11.jpg" alt="work">
+                                                    <a class="fancybox-media overlay" href="images/dress11.jpg" data-fancybox="images">
+                                                        <div class="overlay-inner">
+                                                            <h4>View Simmilar</h4>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Window 1 End -->
+
+            <!-- Modal Window 2 Start -->
+            <div class="modal-window" id="morphic-window2">
+                <div class="modal-body">
+                    <header>
+                        <span class="close-modal"><i></i><i></i></span>
+                    </header>
+                    <div class="morphic-body">
+                        <div class="container">
+                                <section class="p-0">
+                                    <h5><b>Color Preference:</b> Black, Red, Teal</h5>
+                                    <img src="images/result.png"/>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Window 2 End -->
+
+            <!-- Modal Window 3 Start -->
+            <div class="modal-window" id="morphic-window3">
+                <div class="modal-body">
+                    <header>
+                        <span class="close-modal"><i></i><i></i></span>
+                    </header>
+                    <div class="morphic-body">
+                        <div class="container">
+                            <div class="row main-morphic-body align-items-center">
+                                <div class="morphic-img col-12 col-md-6">
+                                    <!-- Main Image -->
+                                    <div id="carousel-thumb3" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+                                        <!--Slides-->
+                                        <div class="carousel-inner" role="listbox">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src="images/model-windows/modal-img-3.png" alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src="images/model-windows/modal-img-5.png" alt="Second slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src="images/model-windows/modal-img-2.png" alt="Third slide">
+                                            </div>
+                                        </div>
+                                        <!--/.Slides-->
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carousel-thumb3" data-slide-to="0" class="active">
+                                                <img class="d-block w-100 img-fluid" src="images/model-windows/modal3-sub1.png" alt="First slide">
+                                            </li>
+                                            <li data-target="#carousel-thumb3" data-slide-to="1">
+                                                <img class="d-block w-100 img-fluid" src="images/model-windows/modal3-sub2.png" alt="Second slide">
+                                            </li>
+                                            <li data-target="#carousel-thumb3" data-slide-to="2">
+                                                <img class="d-block w-100 img-fluid" src="images/model-windows/modal3-sub3.png" alt="Third slide">
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <!--/.Carousel Wrapper-->
+                                </div>
+                                <div class="morphic-title col-12 col-md-6">
+                                    <h5>Formal, Coat, Suit</h5>
+                                    <h3>HERE&NOW</h3>
+                                    <p>93% Your Match<br>
+                                    67% Trend<br><br>
+
+                                    Personalized Score based on your preference:<br>
+                                    71% Style<br>
+                                    91% Interest<br>
+                                    86% Steady<br>
+                                    56% Comfort<br>
+
+                                    </p>
+
+                                    <div class="row pb-md-4">
+                                        <!-- Sizes -->
+                                        <div class="col-3 col-md-2 d-flex align-items-start">
+                                            <div class="color-selection">
+                                                <h6 class="text-center text-md-left">Size:</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-9 col-md-10">
+                                            <div class="color-picker text-center text-md-left">
+                                                <div class="size__item">
+                                                    <h6 class="active">38</h6>
+                                                    <h6>39</h6>
+                                                    <h6>40</h6>
+                                                    <h6>41</h6>
+                                                    <h6>42</h6>
+                                                    <h6>43</h6>
+                                                    <h6>44</h6>
+                                                    <h6>45</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row pb-4">
+                                        <!-- Quantity -->
+                                        <div class="col-6 col-md-1 col-lg-2 d-flex align-items-start">
+                                            <div class="color-selection">
+                                                <h6 class="text-center text-md-left">Qty:</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-5 col-lg-4 input_plus_mins">
+                                            <div class="qty">
+                                                <span class="minus bg-dark"><i class="lni-minus"></i></span>
+                                                <input type="number" class="count" name="qty" value="1">
+                                                <span class="plus bg-dark"><i class="lni-plus"></i></span>
+                                            </div>
+                                        </div>
+                                        <!-- Color-Picker -->
+                                        <div class="col-6 col-md-2 d-flex align-items-start">
+                                            <div class="color-selection">
+                                                <h6 class="text-center text-md-left">Color:</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-4">
+                                            <div class="color-picker text-center text-md-left">
+                                                <!-- Color-1 -->
+                                                <div class="color-picker__item">
+                                                    <input id="input7" type="radio" class="color-picker__input" name="color-input" value="1"/>
+                                                    <label for="input7" class="color-picker__color  color-picker__color--black"></label>
+                                                </div>
+                                                <!-- Color-2 -->
+                                                <div class="color-picker__item">
+                                                    <input id="input8" type="radio" class="color-picker__input" name="color-input" value="4"/>
+                                                    <label for="input8" class="color-picker__color color-picker__color--color2"></label>
+                                                </div>
+                                                <!-- Color-3 -->
+                                                <div class="color-picker__item">
+                                                    <input id="input9" type="radio" class="color-picker__input" name="color-input" value="7"/>
+                                                    <label for="input9" class="color-picker__color color-picker__color--color5"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 price-modal"><h4>Rs. <strike>4500</strike> 3849</h4></div>
+                                        <div class="col-12 modal-btn"><a target="_blank" href="https://www.amazon.com/" class="btn btn-medium btn-rounded btn-trans text-capitalize">Buy Now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Window 3 End -->
+
+        </div>
+
+    </div>
+
+    <script type="application/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            connect: 'Connect with Google Photos to begin analysing your wardrobe. Don\'t worry we care about your privacy you can check our privacy policy.',
+            button: 'Connect with Google Photos',
+            img: 'images/pic0.png'
+        },
+        methods: {
+            authVerification: function() {
+                if (this.button == "Connect with Google Photos") {
+                    this.button = "Connecting...";
+                    setTimeout(function() {
+                        this.connect = "We've analysed all 12 photos of you within your photos library, based on that we created your virtual wardrobe.";
+                        this.button = "Access your wardrobe!";
+                        this.img = "images/pic1.png";
+
+                        setTimeout(function() {
+                            this.img = "images/pic2.png";
+                        }.bind(this), 8000)
+
+                    }.bind(this), 2000)
+                } else {
+
+                }
+            }
+        }
+    });
+
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "flex";
+        evt.currentTarget.className += " active";
+    }
+    </script>
+    <script src="js/bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.pagepiling.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
